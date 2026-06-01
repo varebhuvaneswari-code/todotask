@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Profile | TodoFlow{% endblock %}
+{% block content %}
+<div class="content-grid">
+    <aside class="side-panel">
+        <div class="avatar-xl">
+            {% if user.profile.avatar %}<img src="{{ user.profile.avatar.url }}" alt="{{ user.username }}">{% else %}<i class="bi bi-person"></i>{% endif %}
+        </div>
+        <h2>{{ user.profile.full_name|default:user.username }}</h2>
+        <p>{{ user.email|default:"No email added" }}</p>
+        <a class="btn btn-outline-primary w-100" href="{% url 'accounts:password_change' %}"><i class="bi bi-shield-lock"></i> Change password</a>
+    </aside>
+    <section class="panel slide-up">
+        <h1>Profile settings</h1>
+        <form method="post" enctype="multipart/form-data" class="row g-3" novalidate>
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="{% if field.name == 'bio' %}col-12{% elif field.name == 'dark_mode' %}col-12{% else %}col-md-6{% endif %}">
+                    {% if field.name == 'dark_mode' %}
+                        <div class="form-check form-switch">{{ field }} <label class="form-check-label" for="{{ field.id_for_label }}">Prefer dark mode after login</label></div>
+                    {% else %}
+                        <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                    {% endif %}
+                    {{ field.errors }}
+                </div>
+            {% endfor %}
+            <div class="col-12"><button class="btn btn-primary" type="submit"><i class="bi bi-save"></i> Save profile</button></div>
+        </form>
+    </section>
+</div>
+{% endblock %}

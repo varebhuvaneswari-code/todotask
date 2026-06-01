@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Login | TodoFlow{% endblock %}
+{% block content %}
+<div class="auth-wrap">
+    <div class="auth-card slide-up">
+        <span class="eyebrow">Welcome back</span>
+        <h1>Login</h1>
+        <form method="post" novalidate class="needs-validation">
+            {% csrf_token %}
+            {% if form.non_field_errors %}<div class="alert alert-danger">{{ form.non_field_errors }}</div>{% endif %}
+            <div class="form-floating mb-3">
+                {{ form.username }}
+                <label for="{{ form.username.id_for_label }}">Username</label>
+                {{ form.username.errors }}
+            </div>
+            <div class="form-floating password-field mb-3">
+                {{ form.password }}
+                <label for="{{ form.password.id_for_label }}">Password</label>
+                <button class="password-toggle" type="button" data-password-toggle><i class="bi bi-eye"></i></button>
+                {{ form.password.errors }}
+            </div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <label class="form-check-label">{{ form.remember_me }} Remember me</label>
+                <a href="{% url 'accounts:password_reset' %}">Forgot password?</a>
+            </div>
+            <button class="btn btn-primary w-100" type="submit"><i class="bi bi-box-arrow-in-right"></i> Login</button>
+        </form>
+        <p class="small text-center mt-3 mb-0">New here? <a href="{% url 'accounts:signup' %}">Create an account</a></p>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/notifi.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="notification-page">
+
+    <h1>Notifications</h1>
+
+    <div class="notification-box">
+
+        <div class="notification-card">
+            <h3>Task Completed</h3>
+            <p>Your UI Design task was completed successfully.</p>
+        </div>
+
+        <div class="notification-card">
+            <h3>New Task Assigned</h3>
+            <p>You received a new backend development task.</p>
+        </div>
+
+        <div class="notification-card">
+            <h3>Reminder</h3>
+            <p>Complete pending tasks before deadline.</p>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

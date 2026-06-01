@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}TodoFlow | Focused task management{% endblock %}
+{% block content %}
+<section class="hero-grid align-items-center">
+    <div class="hero-copy fade-in">
+        <span class="eyebrow">Professional Todo Management</span>
+        <h1>Plan work, protect focus, finish with confidence.</h1>
+        <p class="lead">TodoFlow gives every task a clear owner, due date, priority, category, and status so your day is easy to scan and easier to act on.</p>
+        <div class="d-flex flex-wrap gap-2 mt-4">
+            {% if show_dashboard_cta %}
+                <a class="btn btn-primary btn-lg" href="{% url 'todo:dashboard' %}"><i class="bi bi-speedometer2"></i> Open dashboard</a>
+            {% else %}
+                <a class="btn btn-primary btn-lg" href="{% url 'accounts:signup' %}"><i class="bi bi-person-plus"></i> Start free</a>
+                <a class="btn btn-outline-primary btn-lg" href="{% url 'accounts:login' %}">Login</a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="hero-panel slide-up">
+        <div class="task-preview completed"><i class="bi bi-check-circle-fill"></i><span>Submit weekly report</span><b>Done</b></div>
+        <div class="task-preview"><i class="bi bi-lightning-charge-fill text-warning"></i><span>Review launch checklist</span><b>High</b></div>
+        <div class="task-preview"><i class="bi bi-calendar-event text-primary"></i><span>Plan sprint backlog</span><b>Today</b></div>
+        <div class="metric-row">
+            <div><strong>24</strong><span>Total</span></div>
+            <div><strong>18</strong><span>Done</span></div>
+            <div><strong>6</strong><span>Pending</span></div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | TodoFlow{% endblock %}
+{% block content %}
+<div class="dashboard-layout">
+    <aside class="dashboard-sidebar">
+        <a class="active" href="{% url 'todo:dashboard' %}"><i class="bi bi-grid"></i> Overview</a>
+        <a href="{% url 'todo:list' %}"><i class="bi bi-list-check"></i> All tasks</a>
+        <a href="{% url 'todo:create' %}"><i class="bi bi-plus-circle"></i> Add task</a>
+        <a href="{% url 'accounts:profile' %}"><i class="bi bi-person"></i> Profile</a>
+    </aside>
+    <section class="dashboard-main">
+        <div class="page-heading">
+            <div><span class="eyebrow">Dashboard</span><h1>Good to see you, {{ user.first_name|default:user.username }}</h1></div>
+            <a class="btn btn-primary" href="{% url 'todo:create' %}"><i class="bi bi-plus-lg"></i> New task</a>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card"><i class="bi bi-collection"></i><span>Total</span><strong>{{ stats.total|default:0 }}</strong></div>
+            <div class="stat-card"><i class="bi bi-check-circle"></i><span>Completed</span><strong>{{ stats.completed_count|default:0 }}</strong></div>
+            <div class="stat-card"><i class="bi bi-hourglass-split"></i><span>Pending</span><strong>{{ stats.pending_count|default:0 }}</strong></div>
+            <div class="stat-card"><i class="bi bi-fire"></i><span>High priority</span><strong>{{ stats.high|default:0 }}</strong></div>
+        </div>
+        <div class="content-grid mt-4">
+            <div class="panel">
+                <div class="section-title"><h2>Recent tasks</h2><a href="{% url 'todo:list' %}">View all</a></div>
+                {% for task in recent_tasks %}
+                    <div class="task-row {% if task.completed %}is-complete{% endif %}">
+                        <span class="status-dot {% if task.completed %}done{% elif task.is_overdue %}late{% endif %}"></span>
+                        <div><strong>{{ task.title }}</strong><small>{{ task.category|default:"No category" }}{% if task.due_date %} · {{ task.due_date }}{% endif %}</small></div>
+                        <span class="badge text-bg-{{ task.priority.color|default:'secondary' }}">{{ task.priority|default:"Normal" }}</span>
+                    </div>
+                {% empty %}
+                    <div class="empty-mini">No tasks yet. Create your first one.</div>
+                {% endfor %}
+            </div>
+            <div class="panel">
+                <div class="section-title"><h2>Activity</h2></div>
+                {% for item in activity %}
+                    <div class="activity-item"><i class="bi bi-clock-history"></i><span>{{ item.action }}</span><small>{{ item.created_at|timesince }} ago</small></div>
+                {% empty %}
+                    <div class="empty-mini">Activity appears here as you work.</div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

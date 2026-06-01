@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Server error{% endblock %}
+{% block content %}
+<div class="empty-state">
+    <i class="bi bi-exclamation-triangle"></i>
+    <h1>Something went wrong</h1>
+    <p>Please try again. The application handled the error safely.</p>
+    <a class="btn btn-primary" href="{% url 'core:home' %}">Go home</a>
+</div>
+{% endblock %}

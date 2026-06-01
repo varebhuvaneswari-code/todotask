@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard">
+
+    <h1>Dashboard</h1>
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <h2>120</h2>
+            <p>Total Tasks</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>80</h2>
+            <p>Completed</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>25</h2>
+            <p>Pending</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>15</h2>
+            <p>In Progress</p>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

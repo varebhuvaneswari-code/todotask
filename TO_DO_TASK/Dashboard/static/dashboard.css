@@ -1,0 +1,29 @@
+.dashboard h1{
+    margin-bottom:30px;
+    font-size:35px;
+}
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.stat-card{
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    text-align:center;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+.stat-card h2{
+    font-size:40px;
+    color:#007bff;
+    margin-bottom:10px;
+}
+
+.stat-card p{
+    color:gray;
+    font-size:18px;
+}

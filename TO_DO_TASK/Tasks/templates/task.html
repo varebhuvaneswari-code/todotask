@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/task.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="task-page">
+
+    <div class="task-header">
+        <h1>Task Management</h1>
+        <button class="add-btn">+ Add Task</button>
+    </div>
+
+    <div class="task-grid">
+
+        <div class="task-card">
+            <h2>UI Design</h2>
+            <p>Create homepage design for website.</p>
+            <span class="pending">Pending</span>
+        </div>
+
+        <div class="task-card">
+            <h2>Django Backend</h2>
+            <p>Connect frontend with Django views.</p>
+            <span class="progress">In Progress</span>
+        </div>
+
+        <div class="task-card">
+            <h2>Testing</h2>
+            <p>Check all pages and responsiveness.</p>
+            <span class="completed">Completed</span>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
