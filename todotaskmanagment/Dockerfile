@@ -1,7 +1,7 @@
 FROM python:3.13
 
 WORKDIR /app
-COPY ..
+COPY . .
 RUN pip install -r requirements.txt
 RUN python manage.py collectstatic --noinput
 
